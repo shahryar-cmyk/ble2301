@@ -1,0 +1,47 @@
+PODS:
+  - ble2301 (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_blue_elves (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - permission_handler_apple (9.1.1):
+    - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - ble2301 (from `.symlinks/plugins/ble2301/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_blue_elves (from `.symlinks/plugins/flutter_blue_elves/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+
+EXTERNAL SOURCES:
+  ble2301:
+    :path: ".symlinks/plugins/ble2301/ios"
+  Flutter:
+    :path: Flutter
+  flutter_blue_elves:
+    :path: ".symlinks/plugins/flutter_blue_elves/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+
+SPEC CHECKSUMS:
+  ble2301: 123ceb3cbe327fea0d1b54c77000cee68395ac70
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_blue_elves: 54b877926bb55dbb36447ff095b780ebca3650c5
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+
+PODFILE CHECKSUM: 663715e941f9adb426e33bf9376914006f9ea95b
+
+COCOAPODS: 1.11.2
