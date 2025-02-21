@@ -1,5 +1,4 @@
-group 'com.jstyle.blesdk2301.ble2301'
-version '1.0'
+
 
 buildscript {
     repositories {
