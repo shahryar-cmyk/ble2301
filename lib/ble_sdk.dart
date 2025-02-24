@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'dart:core';
 import 'dart:ffi';
@@ -9,7 +7,6 @@ import 'bean/models.dart';
 import 'utils/ble_const.dart';
 import 'utils/device_cmd.dart';
 import 'utils/resolve_util.dart';
-
 
 class BleSDK {
   static const int DATA_READ_START = 0;
@@ -21,11 +18,10 @@ class BleSDK {
   static const int TimeMode_24h = 0x80;
   static const int WristOn_Enable = 0x81;
   static const int WristOn_DisEnable = 0x80;
-  static const int TempUnit_C =  0x80;
-  static const int TempUnit_F =  0x81;
+  static const int TempUnit_C = 0x80;
+  static const int TempUnit_F = 0x81;
   static const String TAG = "BleSDK";
   static bool isRuning = false;
-
 
   static List<int> _generateValue(int size) {
     final List<int> data = List<int>.generate(size, (int index) {
@@ -99,10 +95,6 @@ class BleSDK {
     return int.parse(data, radix: 16);
   }
 
-
-
-
-
   static Map DataParsingWithData(List<int> value) {
     switch (value[0]) {
       case DeviceConst.CMD_Set_Goal:
@@ -112,11 +104,13 @@ class BleSDK {
       case DeviceConst.CMD_Set_Name:
         break;
       case DeviceConst.CMD_Set_MOT_SIGN:
-        return ResolveUtil.setMethodSuccessful(BleConst.SetMotorVibrationWithTimes);
+        return ResolveUtil.setMethodSuccessful(
+            BleConst.SetMotorVibrationWithTimes);
       case DeviceConst.CMD_Set_DeviceInfo:
         return ResolveUtil.setMethodSuccessful(BleConst.SetDeviceInfo);
       case DeviceConst.CMD_Set_AutoHeart:
-        return ResolveUtil.setMethodSuccessful(BleConst.SetAutomaticHRMonitoring);
+        return ResolveUtil.setMethodSuccessful(
+            BleConst.SetAutomaticHRMonitoring);
       case DeviceConst.CMD_Set_ActivityAlarm:
         return ResolveUtil.setMethodSuccessful(BleConst.SetSedentaryReminder);
       case DeviceConst.CMD_Set_DeviceID:
@@ -126,8 +120,9 @@ class BleSDK {
       case DeviceConst.CMD_Set_TemperatureCorrection:
         if (value[2] != 0 && value[3] != 0) {
           return ResolveUtil.GetTemperatureCorrectionValue(value);
-        }else{
-          return ResolveUtil.setMethodSuccessful(BleConst.CMD_Set_TemperatureCorrection);
+        } else {
+          return ResolveUtil.setMethodSuccessful(
+              BleConst.CMD_Set_TemperatureCorrection);
         }
       case DeviceConst.CMD_HeartPackageFromDevice:
         return ResolveUtil.getActivityExerciseData(value);
@@ -193,93 +188,100 @@ class BleSDK {
         return ResolveUtil.eCGQuality(value);
       case DeviceConst.CMD_ECGDATA:
       case DeviceConst.CMD_PPGGDATA:
-      break;
+        break;
       case DeviceConst.Weather:
         return ResolveUtil.setMethodSuccessful(BleConst.Weather);
-    case DeviceConst.Braceletdial:
-      return ResolveUtil.braceletdial(isRuning,value);
-    case DeviceConst.SportMode:
-      return ResolveUtil.setMethodSuccessful(BleConst.SportMode);
-    case DeviceConst.GetSportMode:
-      return ResolveUtil.getSportMode(value);
-    case DeviceConst.MeasurementWithType:
-      return ResolveUtil.measurementWithType(StartDeviceMeasurementWithType,value);
-    case DeviceConst.GPSControlCommand:
-      return ResolveUtil.gPSControlCommand(value);
-    case DeviceConst.CMD_Get_GPSDATA:
-      return ResolveUtil.getHistoryGpsData(value);
-    case DeviceConst.Clear_Bracelet_data:
-      return ResolveUtil.setMethodSuccessful(BleConst.Clear_Bracelet_data);
-    case DeviceConst.CMD_Get_Auto_Blood_oxygen:
-      return ResolveUtil.getAutoBloodOxygen(value);
-    case DeviceConst.CMD_Get_Blood_oxygen:
-      return ResolveUtil.getBloodoxygen(value);
-    case  DeviceConst.CMD_SET_SOCIAL:
-      if(isSettingSocial){
-        return ResolveUtil.setMethodSuccessful(BleConst.SocialdistanceSetting);
-      }else{
-        return ResolveUtil.setSocial(value);
-      }
-    case  DeviceConst.Sos:
-      return ResolveUtil.setMethodSuccessful(BleConst.Sos);
-    case  DeviceConst.Temperature_history:
-      return ResolveUtil.getTempData(value);
-    case  DeviceConst.GetAxillaryTemperatureDataWithMode:
-      return ResolveUtil.getTempDataer(value);
-    case DeviceConst.CMD_QrCode:
-      return ResolveUtil.getQrCode(value,false);
+      case DeviceConst.Braceletdial:
+        return ResolveUtil.braceletdial(isRuning, value);
+      case DeviceConst.SportMode:
+        return ResolveUtil.setMethodSuccessful(BleConst.SportMode);
+      case DeviceConst.GetSportMode:
+        return ResolveUtil.getSportMode(value);
+      case DeviceConst.MeasurementWithType:
+        return ResolveUtil.measurementWithType(
+            StartDeviceMeasurementWithType, value);
+      case DeviceConst.GPSControlCommand:
+        return ResolveUtil.gPSControlCommand(value);
+      case DeviceConst.CMD_Get_GPSDATA:
+        return ResolveUtil.getHistoryGpsData(value);
+      case DeviceConst.Clear_Bracelet_data:
+        return ResolveUtil.setMethodSuccessful(BleConst.Clear_Bracelet_data);
+      case DeviceConst.CMD_Get_Auto_Blood_oxygen:
+        return ResolveUtil.getAutoBloodOxygen(value);
+      case DeviceConst.CMD_Get_Blood_oxygen:
+        return ResolveUtil.getBloodoxygen(value);
+      case DeviceConst.CMD_SET_SOCIAL:
+        if (isSettingSocial) {
+          return ResolveUtil.setMethodSuccessful(
+              BleConst.SocialdistanceSetting);
+        } else {
+          return ResolveUtil.setSocial(value);
+        }
+      case DeviceConst.Sos:
+        return ResolveUtil.setMethodSuccessful(BleConst.Sos);
+      case DeviceConst.Temperature_history:
+        return ResolveUtil.getTempData(value);
+      case DeviceConst.GetAxillaryTemperatureDataWithMode:
+        return ResolveUtil.getTempDataer(value);
+      case DeviceConst.CMD_QrCode:
+        return ResolveUtil.getQrCode(value, false);
       case DeviceConst.CMD_GET_BLOODSUGAR:
         return ResolveUtil.setBoolSugarStatus(value);
       case DeviceConst.CMD_GET_BLOODSUGAR_DATA:
         return ResolveUtil.setBoolSugarValue(value);
-    case DeviceConst.GetEcgPpgStatus:
-      return ResolveUtil.ECGResult(value);
+      case DeviceConst.GetEcgPpgStatus:
+        return ResolveUtil.ECGResult(value);
       case DeviceConst.PregnancyCycle:
-        if(pregnancyCycleRead){//读取
+        if (pregnancyCycleRead) {
+          //读取
           return ResolveUtil.readPregnancyCycle(value);
-        }else{//设置
+        } else {
+          //设置
           return ResolveUtil.setMethodSuccessful(BleConst.SetPregnancyCycle);
         }
-    case DeviceConst.GetEcgSaveData:
-      if(read){
-        return ResolveUtil.getEcgHistoryData(value);
-      }else {
-        return ResolveUtil.setMethodSuccessful(BleConst.DeleteECGdata);
-      }
-    case DeviceConst.Openecg:
-      if(ecgopen){
-        if(16 <= value.length){
-          return ResolveUtil.ecgData(value);
+      case DeviceConst.GetEcgSaveData:
+        if (read) {
+          return ResolveUtil.getEcgHistoryData(value);
+        } else {
+          return ResolveUtil.setMethodSuccessful(BleConst.DeleteECGdata);
         }
-      }else{
-        return ResolveUtil.setMethodSuccessful(BleConst.ECG);
-      }
-      break;
-    case DeviceConst.WomenHealth:
-      if(value[1] == 0){//设置
-        return ResolveUtil.setMethodSuccessful(BleConst.SetWomenHealth);
-      }else{//读取
-        return ResolveUtil.readWomenHealth(value);
-      }
-    case DeviceConst.Closeecg:
-      return ResolveUtil.setMethodSuccessful(BleConst.CloseECG);
-    case DeviceConst.BloodsugarWithMode:
+      case DeviceConst.Openecg:
+        if (ecgopen) {
+          if (16 <= value.length) {
+            return ResolveUtil.ecgData(value);
+          }
+        } else {
+          return ResolveUtil.setMethodSuccessful(BleConst.ECG);
+        }
+        break;
+      case DeviceConst.WomenHealth:
+        if (value[1] == 0) {
+          //设置
+          return ResolveUtil.setMethodSuccessful(BleConst.SetWomenHealth);
+        } else {
+          //读取
+          return ResolveUtil.readWomenHealth(value);
+        }
+      case DeviceConst.Closeecg:
+        return ResolveUtil.setMethodSuccessful(BleConst.CloseECG);
+      case DeviceConst.BloodsugarWithMode:
         int ppi = _hexByte2Int(value[1], 0);
         int ppi2 = _hexByte2Int(value[2], 0);
-        if(0==ppi){
-          switch (ppi2){
+        if (0 == ppi) {
+          switch (ppi2) {
             case 1:
               return ResolveUtil.setMethodSuccessful(BleConst.ppgStartSucessed);
             case 2:
-             return ResolveUtil.setMethodSuccessful(BleConst.ppgResult);
+              return ResolveUtil.setMethodSuccessful(BleConst.ppgResult);
             case 3:
               return ResolveUtil.setMethodSuccessful(BleConst.ppgStop);
             case 4:
-              return ResolveUtil.setMethodSuccessful(BleConst.ppgMeasurementProgress);
+              return ResolveUtil.setMethodSuccessful(
+                  BleConst.ppgMeasurementProgress);
             case 5:
               return ResolveUtil.setMethodSuccessful(BleConst.ppgQuit);
           }
-        }else{
+        } else {
           return ResolveUtil.setMethodSuccessful(BleConst.ppgStartFailed);
         }
         break;
@@ -291,30 +293,25 @@ class BleSDK {
         return ResolveUtil.CloseDevices(value);
       case DeviceConst.CMD_AUTO_CHECK_STATUS:
         return ResolveUtil.GetOffCheckStatus(value);
-
-
-
     }
     return ResolveUtil.setMethodError(_getBcdValue(value[0]).toString());
   }
 
   ///血糖
-  static Uint8List BloodsugarWithMode(int ppgMode,int ppgStatus) {
+  static Uint8List BloodsugarWithMode(int ppgMode, int ppgStatus) {
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.BloodsugarWithMode;
     value[1] = ppgMode;
-    if(2==ppgMode || 4==ppgMode){
+    if (2 == ppgMode || 4 == ppgMode) {
       value[2] = ppgStatus;
     }
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-
-
   static bool ecgopen = false;
   static Uint8List OpenECGPPG(int level, int time) {
-    ecgopen= 0 != level;
+    ecgopen = 0 != level;
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.Openecg;
     value[1] = level;
@@ -324,17 +321,14 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-  static Uint8List stopEcgPPg(){
+  static Uint8List stopEcgPPg() {
     List<int> value = _generateInitValue();
-    value[0]=DeviceConst.Closeecg;
+    value[0] = DeviceConst.Closeecg;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-
   static bool read = false;
-
-
 
   ///获得睡眠详细数据
   ///mode : 0-读最近的睡眠详细数据 2-继续上次读的位置下一段数据 99-删除睡眠数据
@@ -343,10 +337,10 @@ class BleSDK {
   static Uint8List GetDetailSleepDataWithMode(int mode) {
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_SleepData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else{
-      value[1] =  mode;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else {
+      value[1] = mode;
     }
     _crcValue(value);
     return Uint8List.fromList(value);
@@ -356,31 +350,29 @@ class BleSDK {
   ///mode : 0-读最近的睡眠详细数据 2-继续上次读的位置下一段数据 99-删除睡眠数据 time: yyyy-MM-dd HH:mm:ss
   ///Obtain detailed sleep data
   ///mode : 0-Read the latest sleep detailed data 2-Continue with the next data segment at the last read location 99-Delete sleep data time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetDetailSleepDataWithModeForTime(int mode,String time) {
+  static Uint8List GetDetailSleepDataWithModeForTime(int mode, String time) {
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_SleepData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else{
-      value[1] =  mode;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else {
+      value[1] = mode;
     }
     _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-
   ///开始实时计步
   ///Start real time step
-  static Uint8List RealTimeStep(bool enable,bool tempEnable) {
+  static Uint8List RealTimeStep(bool enable, bool tempEnable) {
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Enable_Activity;
-    value[1] =  (enable ? 1 : 0);
-    value[2] =  (tempEnable ? 1 : 0);
+    value[1] = (enable ? 1 : 0);
+    value[2] = (tempEnable ? 1 : 0);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///停止实时计步
   ///Stop real-time step counting
@@ -392,8 +384,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
-
   ///设置个人信息
   ///Set user profile
   static Uint8List SetPersonalInfo(MyPersonalInfo info) {
@@ -404,15 +394,14 @@ class BleSDK {
     int weight = info.weight;
     int stepLength = info.stepLength;
     value[0] = DeviceConst.CMD_Set_UseInfo;
-    value[1] =  male;
-    value[2] =  age;
-    value[3] =  height;
-    value[4] =  weight;
-    value[5] =  stepLength;
+    value[1] = male;
+    value[2] = age;
+    value[3] = height;
+    value[4] = weight;
+    value[5] = stepLength;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获取个人信息
   ///Get user's personal information
@@ -422,7 +411,6 @@ class BleSDK {
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///设置设备时间
   ///Set Device Time
@@ -445,7 +433,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
   ///获取设备时间
   ///Get device time
   static Uint8List GetDeviceTime() {
@@ -455,7 +442,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
   ///获得步数详细数据
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据
   ///Obtain detailed step count data
@@ -463,10 +449,10 @@ class BleSDK {
   static Uint8List GetDetailActivityDataWithMode(int mode) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_DetailData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else{
-      value[1] =  mode;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else {
+      value[1] = mode;
     }
     _crcValue(value);
     return Uint8List.fromList(value);
@@ -476,13 +462,13 @@ class BleSDK {
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time : yyyy-MM-dd HH:mm:ss
   ///Obtain detailed step count data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time : yyyy-MM-dd HH:mm:ss
-  static Uint8List GetDetailActivityDataWithModeForTime(int mode,String time) {
+  static Uint8List GetDetailActivityDataWithModeForTime(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_DetailData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else{
-      value[1] =  mode;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else {
+      value[1] = mode;
     }
     _insertDateValue(value, time);
     _crcValue(value);
@@ -493,13 +479,13 @@ class BleSDK {
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time : yyyy-MM-dd HH:mm:ss
   ///Automatic testing of temperature data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time : yyyy-MM-dd HH:mm:ss
-  static Uint8List GetTemperature_historyDataWithMode(int mode,String time) {
+  static Uint8List GetTemperature_historyDataWithMode(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.Temperature_history;
-    if(99==mode){
-      value[1] =  0x99;
-    }else{
-      value[1] =  mode;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else {
+      value[1] = mode;
     }
     _insertDateValue(value, time);
     _crcValue(value);
@@ -510,35 +496,33 @@ class BleSDK {
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time: yyyy-MM-dd HH:mm:ss
   ///Manual testing of temperature data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data  time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetAxillaryTemperatureDataWithMode(int mode,String time) {
+  static Uint8List GetAxillaryTemperatureDataWithMode(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.GetAxillaryTemperatureDataWithMode;
-    if(99==mode){
-      value[1] =  0x99;
-    }else if(0==mode){
-      value[1] =  0x00;
-    }else if(1==mode){
-      value[1] =  0x01;
-    }else{
-      value[1] =  0x02;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else if (0 == mode) {
+      value[1] = 0x00;
+    } else if (1 == mode) {
+      value[1] = 0x01;
+    } else {
+      value[1] = 0x02;
     }
     _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-
   ///运动模式开关
   ///Sport mode switch
   static Uint8List EnterActivityMode(int activityMode, int WorkMode) {
     List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Start_EXERCISE;
-    value[1] =  WorkMode;
-    value[2] =  activityMode;
+    value[1] = WorkMode;
+    value[2] = activityMode;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///发送运动模式心跳包(配合"EnterActivityMode"使用)
   ///当手环是通过APP进入多运动模式后，APP必须每隔1秒发送一个数据给手环，否则手环会退出多运动模式
@@ -553,13 +537,12 @@ class BleSDK {
     final List<int> distanceValue = bData.buffer.asUint8List(0, 4);
     value[0] = DeviceConst.CMD_heart_package;
     arrayCopy(distanceValue, 0, value, 1, distanceValue.length);
-    value[5] =  min;
-    value[6] =  second;
-    value[7] =  rssi;
+    value[5] = min;
+    value[6] = second;
+    value[7] = rssi;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获取某天总数据
   ///0:表⽰是从最新的位置开始读取(最多50组数据)  2:表⽰接着读取(当数据总数⼤于50的时候) 0x99:表⽰删除所有运动数据
@@ -568,19 +551,18 @@ class BleSDK {
   static Uint8List GetTotalActivityDataWithMode(int mode) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_TotalData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else if(0==mode){
-      value[1] =  0x00;
-    }else if(1==mode){
-      value[1] =  0x01;
-    }else{
-      value[1] =  0x02;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else if (0 == mode) {
+      value[1] = 0x00;
+    } else if (1 == mode) {
+      value[1] = 0x01;
+    } else {
+      value[1] = 0x02;
     }
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///根据某个日期获取到最新的总数据
   ///mode: 0-表⽰是从最新的位置开始读取(最多50组数据)  2-表⽰接着读取(当数据总数⼤于50的时候) 99-表⽰删除所有运动数据
@@ -588,25 +570,25 @@ class BleSDK {
   ///Obtain the latest total data based on a certain date
   ///mode: 0-Table 1 starts reading from the latest position (up to 50 sets of data) 2-Table 2 continues reading (when the total number of data exceeds 50) 99-Table 1 deletes all motion data
   ///time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetTotalActivityDataWithModeForTime(int mode,String time) {
+  static Uint8List GetTotalActivityDataWithModeForTime(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_TotalData;
-    if(99==mode){
+    if (99 == mode) {
       value[1] = 0x99;
-    }else if(0==mode){
-      value[1] =  0x00;
-    }else if(1==mode){
-      value[1] =  0x01;
-    }else{
-      value[1] =  0x02;
+    } else if (0 == mode) {
+      value[1] = 0x00;
+    } else if (1 == mode) {
+      value[1] = 0x01;
+    } else {
+      value[1] = 0x02;
     }
-    _insertDateValue(value,time);
+    _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-  static _insertDateValue(List<int> list,String time){
-    if(time.isNotEmpty){
+  static _insertDateValue(List<int> list, String time) {
+    if (time.isNotEmpty) {
       var timeArray = time.split(' ');
       int year = int.parse(timeArray[0].split('-')[0]);
       int month = int.parse(timeArray[0].split('-')[1]);
@@ -623,7 +605,6 @@ class BleSDK {
     }
   }
 
-
   ///进入dfu模式
   ///Entering dfu mode
   static Uint8List enterOTA() {
@@ -632,7 +613,6 @@ class BleSDK {
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获取设备版本号
   ///Read software version number
@@ -643,8 +623,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
-
   ///恢复出厂设置
   ///Restore factory settings
   static Uint8List Reset() {
@@ -653,7 +631,6 @@ class BleSDK {
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获取设备mac地址
   ///Read MAC address
@@ -664,7 +641,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
   ///获取设备电量
   ///Read device power
   static Uint8List GetDeviceBatteryLevel() {
@@ -673,7 +649,6 @@ class BleSDK {
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///重启设备
   ///MCU soft reset command
@@ -691,12 +666,11 @@ class BleSDK {
     value[0] = DeviceConst.CMD_Set_Name;
     int length = strDeviceName.length > 14 ? 14 : strDeviceName.length;
     for (int i = 0; i < length; i++) {
-      value[i + 1] =  strDeviceName.codeUnitAt(i);
+      value[i + 1] = strDeviceName.codeUnitAt(i);
     }
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获取设备名称
   ///Read Bluetooth device name
@@ -706,7 +680,6 @@ class BleSDK {
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///设置设备信息
   ///Set basic parameters of Bracelet
@@ -727,24 +700,22 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
-
-  static bool StartDeviceMeasurementWithType=false;
+  static bool StartDeviceMeasurementWithType = false;
 
   ///健康测量控制
   ///Health measurement control
-  static Uint8List HealthMeasurementWithDataType(int dataType,bool open) {
-    StartDeviceMeasurementWithType=open;
+  static Uint8List HealthMeasurementWithDataType(int dataType, bool open) {
+    StartDeviceMeasurementWithType = open;
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.MeasurementWithType;
-    value[1]=dataType;
-    value[2] = open?0x01:0x00;
+    value[1] = dataType;
+    value[2] = open ? 0x01 : 0x00;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
   static Uint8List SetBraceletdial(int mode) {
-    isRuning=true;
+    isRuning = true;
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.Braceletdial;
     value[1] = mode;
@@ -754,11 +725,22 @@ class BleSDK {
 
   ///自定义命令
   static Uint8List setValue(
-      int v1, int v2, int v3, int v4,
-      int v5, int v6, int v7, int v8,
-      int v9, int v10, int v11, int v12,
-      int v13, int v14, int v15,
-      ){
+    int v1,
+    int v2,
+    int v3,
+    int v4,
+    int v5,
+    int v6,
+    int v7,
+    int v8,
+    int v9,
+    int v10,
+    int v11,
+    int v12,
+    int v13,
+    int v14,
+    int v15,
+  ) {
     final List<int> value = _generateInitValue();
     value[0] = _getBcdValue(v1);
     value[1] = _getBcdValue(v2);
@@ -779,22 +761,21 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
   ///获得HRV测试数据
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time: yyyy-MM-dd HH:mm:ss
   ///Get HRV test data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data  time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetHRVDataWithMode(int mode,String time) {
+  static Uint8List GetHRVDataWithMode(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_HrvTestData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else if(0==mode){
-      value[1] =  0x00;
-    }else if(1==mode){
-      value[1] =  0x01;
-    }else{
-      value[1] =  0x02;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else if (0 == mode) {
+      value[1] = 0x00;
+    } else if (1 == mode) {
+      value[1] = 0x01;
+    } else {
+      value[1] = 0x02;
     }
     _insertDateValue(value, time);
     _crcValue(value);
@@ -805,14 +786,14 @@ class BleSDK {
   static Uint8List GetPPIDDataWithMode(int mode) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_PPITestData;
-    if(99==mode){
-      value[1] =  0x99;
-    }else if(0==mode){
-      value[1] =  0x00;
-    }else if(1==mode){
-      value[1] =  0x01;
-    }else{
-      value[1] =  0x02;
+    if (99 == mode) {
+      value[1] = 0x99;
+    } else if (0 == mode) {
+      value[1] = 0x00;
+    } else if (1 == mode) {
+      value[1] = 0x01;
+    } else {
+      value[1] = 0x02;
     }
     _crcValue(value);
     return Uint8List.fromList(value);
@@ -838,7 +819,7 @@ class BleSDK {
   }
 
   //断开蓝牙
-  static Uint8List CloseBlueDevice(){
+  static Uint8List CloseBlueDevice() {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_CLOSE_DEVICE;
     _crcValue(value);
@@ -847,16 +828,17 @@ class BleSDK {
 
   ///血糖开始测量
   ///Start measuring blood sugar
-  static Uint8List startBloodSugar(){
+  static Uint8List startBloodSugar() {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_GET_BLOODSUGAR;
     value[1] = 0x01;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
+
   ///血糖进度设置
   ///Blood glucose progress setting
-  static Uint8List progressBloodSugar(int progress){
+  static Uint8List progressBloodSugar(int progress) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_GET_BLOODSUGAR;
     value[1] = 0x04;
@@ -867,7 +849,7 @@ class BleSDK {
 
   ///结束测量血糖
   ///End measuring blood glucose
-  static Uint8List endBloodSugar(){
+  static Uint8List endBloodSugar() {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_GET_BLOODSUGAR;
     value[1] = 0x03;
@@ -875,12 +857,9 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
-
   static bool pregnancyCycleRead = false;
 
-  static bool isSettingSocial=false;
-
+  static bool isSettingSocial = false;
 
   ///设置自动检测心率时段
   ///Set automatic heart rate detection period
@@ -888,15 +867,15 @@ class BleSDK {
     final List<int> value = _generateInitValue();
     int time = autoHeart.time;
     value[0] = DeviceConst.CMD_Set_AutoHeart;
-    value[1] =  autoHeart.open;
+    value[1] = autoHeart.open;
     value[2] = _getBcdValue(autoHeart.startHour);
     value[3] = _getBcdValue(autoHeart.startMinute);
     value[4] = _getBcdValue(autoHeart.endHour);
     value[5] = _getBcdValue(autoHeart.endMinute);
-    value[6] =  autoHeart.week;
-    value[7] =  (time & 0xff);
-    value[8] =  ((time >> 8) & 0xff);
-    value[9] = autoHeart.type;//
+    value[6] = autoHeart.week;
+    value[7] = (time & 0xff);
+    value[8] = ((time >> 8) & 0xff);
+    value[9] = autoHeart.type; //
     _crcValue(value);
     return Uint8List.fromList(value);
   }
@@ -920,17 +899,16 @@ class BleSDK {
   static Uint8List GetActivityModeDataWithMode(int mode) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_SPORTData;
-    value[1] =  mode;
+    value[1] = mode;
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获得单次心率数据（间隔测试心率）
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据  time: yyyy-MM-dd HH:mm:ss
   ///Obtain single heart rate data (interval test heart rate)
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetStaticHRWithMode(int mode,String time) {
+  static Uint8List GetStaticHRWithMode(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_OnceHeartData;
     value[1] = mode;
@@ -943,24 +921,23 @@ class BleSDK {
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time: yyyy-MM-dd HH:mm:ss
   ///Get heart rate data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetDynamicHRWithMode(int mode,String time) {
+  static Uint8List GetDynamicHRWithMode(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_HeartData;
-    value[1] =  mode;
-    _insertDateValue(value,time);
+    value[1] = mode;
+    _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
-
 
   ///获得血氧数据
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time: yyyy-MM-dd HH:mm:ss
   ///Get blood oxygen data
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetBloodOxygen(int mode,String time) {
+  static Uint8List GetBloodOxygen(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_Blood_oxygen;
-    value[1] =  mode;
+    value[1] = mode;
     _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
@@ -970,34 +947,33 @@ class BleSDK {
   ///mode : 0-读最近的详细数据 2-继续上次读的位置下一段数据 99-删除数据 time: yyyy-MM-dd HH:mm:ss
   ///Obtain blood oxygen data (automatic testing)
   ///mode : 0-Read the latest detailed data 2-Continue with the next data segment at the last read location 99-Delete data time: yyyy-MM-dd HH:mm:ss
-  static Uint8List GetAutoBloodOxygen(int mode,String time) {
+  static Uint8List GetAutoBloodOxygen(int mode, String time) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Get_Auto_Blood_oxygen;
-    value[1] =  mode;
+    value[1] = mode;
     _insertDateValue(value, time);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
 
-
-
   ///设置目标步数
   ///Set target steps
-  static Uint8List SetStepGoal(int stepGoal,int targetExecutionTime,int distance,int calorie,int sleepTime) {
+  static Uint8List SetStepGoal(int stepGoal, int targetExecutionTime,
+      int distance, int calorie, int sleepTime) {
     final List<int> value = _generateInitValue();
     value[0] = DeviceConst.CMD_Set_Goal;
-    value[4] =  ((stepGoal >> 24) & 0xff);
-    value[3] =  ((stepGoal >> 16) & 0xff);
-    value[2] =  ((stepGoal >> 8) & 0xff);
-    value[1] =  ((stepGoal) & 0xff);
-    value[6] =  ((targetExecutionTime >> 8) & 0xff);
-    value[5] =  ((targetExecutionTime) & 0xff);
-    value[8] =  ((distance >> 8) & 0xff);
-    value[7] =  ((distance) & 0xff);
-    value[10] =  ((calorie >> 8) & 0xff);
-    value[9] =  ((calorie) & 0xff);
-    value[12] =  ((sleepTime >> 8) & 0xff);
-    value[11] =  ((sleepTime) & 0xff);
+    value[4] = ((stepGoal >> 24) & 0xff);
+    value[3] = ((stepGoal >> 16) & 0xff);
+    value[2] = ((stepGoal >> 8) & 0xff);
+    value[1] = ((stepGoal) & 0xff);
+    value[6] = ((targetExecutionTime >> 8) & 0xff);
+    value[5] = ((targetExecutionTime) & 0xff);
+    value[8] = ((distance >> 8) & 0xff);
+    value[7] = ((distance) & 0xff);
+    value[10] = ((calorie >> 8) & 0xff);
+    value[9] = ((calorie) & 0xff);
+    value[12] = ((sleepTime >> 8) & 0xff);
+    value[11] = ((sleepTime) & 0xff);
     _crcValue(value);
     return Uint8List.fromList(value);
   }
@@ -1011,7 +987,6 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
   ///读取手环基本参数
   ///Read basic parameters of Bracelet
   static Uint8List GetDeviceInfo() {
@@ -1021,17 +996,32 @@ class BleSDK {
     return Uint8List.fromList(value);
   }
 
-
-
   static List<int> intToint(int num) {
-    return [((num >> 8) & 0xff),(num & 0xff)];
+    return [((num >> 8) & 0xff), (num & 0xff)];
   }
 
-  static int intArrayToInt(List<int>arr) {
+  static int intArrayToInt(List<int> arr) {
     int targets = ((arr[1] & 0xff) | ((arr[0] << 8) & 0xff00));
     return targets;
   }
 
+  static Uint8List SetActivityAlarm(MyActivityAlarm activityAlarm) {
+    final List<int> value = _generateInitValue();
+    value[0] = DeviceConst.CMD_Set_ActivityAlarm; // Command ID
+    value[1] = activityAlarm.open; // Enable/disable alarm
+    value[2] = _getBcdValue(activityAlarm.startHour); // Start hour
+    value[3] = _getBcdValue(activityAlarm.startMinute); // Start minute
+    value[4] = _getBcdValue(activityAlarm.endHour); // End hour
+    value[5] = _getBcdValue(activityAlarm.endMinute); // End minute
+    value[6] = activityAlarm.week; // Days of the week
+    _crcValue(value); // Calculate CRC
+    return Uint8List.fromList(value);
+  }
 
-
+  static Uint8List GetActivityAlarm() {
+    final List<int> value = _generateInitValue();
+    value[0] = DeviceConst.CMD_Get_ActivityAlarm; // Command ID
+    _crcValue(value); // Calculate CRC
+    return Uint8List.fromList(value);
+  }
 }
