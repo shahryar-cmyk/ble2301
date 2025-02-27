@@ -1005,22 +1005,44 @@ class BleSDK {
     return targets;
   }
 
-  static Uint8List SetActivityAlarm(MyActivityAlarm activityAlarm) {
+// Code Edition for the Alarm
+
+  static Uint8List SetActivityAlarm(Clock activityAlarm) {
     final List<int> value = _generateInitValue();
-    value[0] = DeviceConst.CMD_Set_ActivityAlarm; // Command ID
-    value[1] = activityAlarm.open; // Enable/disable alarm
-    value[2] = _getBcdValue(activityAlarm.startHour); // Start hour
-    value[3] = _getBcdValue(activityAlarm.startMinute); // Start minute
-    value[4] = _getBcdValue(activityAlarm.endHour); // End hour
-    value[5] = _getBcdValue(activityAlarm.endMinute); // End minute
-    value[6] = activityAlarm.week; // Days of the week
+    List<int> infoValue = _getInfoValue(activityAlarm.content, 30);
+
+    value[0] = DeviceConst.CMD_Set_Clock; // Command ID
+    value[1] = activityAlarm.enable; // Enable/disable alarm
+    value[2] = activityAlarm.type; // Start hour
+    value[3] = _getBcdValue(activityAlarm.hour); // Start minute
+    value[4] = _getBcdValue(activityAlarm.minute); // End hour
+    value[5] = activityAlarm.weeks; // End minute
+    value[6] = infoValue.length; // Days of the week
     _crcValue(value); // Calculate CRC
     return Uint8List.fromList(value);
   }
+  //   static Uint8List SetDeviceTime(DateTime dateTime) {
+  //   final List<int> value = _generateInitValue();
+  //   final int year = dateTime.year;
+  //   final int month = dateTime.month;
+  //   final int day = dateTime.day;
+  //   final int hour = dateTime.hour;
+  //   final int minute = dateTime.minute;
+  //   final int second = dateTime.second;
+  //   value[0] = DeviceConst.CMD_SET_TIME;
+  //   value[1] = _getBcdValue(year);
+  //   value[2] = _getBcdValue(month);
+  //   value[3] = _getBcdValue(day);
+  //   value[4] = _getBcdValue(hour);
+  //   value[5] = _getBcdValue(minute);
+  //   value[6] = _getBcdValue(second);
+  //   _crcValue(value);
+  //   return Uint8List.fromList(value);
+  // }
 
   static Uint8List GetActivityAlarm() {
     final List<int> value = _generateInitValue();
-    value[0] = DeviceConst.CMD_Get_ActivityAlarm; // Command ID
+    value[0] = DeviceConst.CMD_Get_Clock; // Command ID
     _crcValue(value); // Calculate CRC
     return Uint8List.fromList(value);
   }
