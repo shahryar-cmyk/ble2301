@@ -1012,7 +1012,7 @@ class BleSDK {
     List<int> infoValue = _getInfoValue(activityAlarm.content, 30);
 
     value[0] = DeviceConst.CMD_Set_Clock; // Command ID
-    value[1] = activityAlarm.enable; // Enable/disable alarm
+    value[1] = (activityAlarm.enable) ? 1 : 0; // Enable/disable alarm
     value[2] = activityAlarm.type; // Start hour
     value[3] = _getBcdValue(activityAlarm.hour); // Start minute
     value[4] = _getBcdValue(activityAlarm.minute); // End hour
