@@ -1071,4 +1071,22 @@ class BleSDK {
 
     return Uint8List.fromList(totalValue);
   }
+
+  static Uint8List setBloodPressureCalibration(int high, int low) {
+    final List<int> value = _generateInitValue();
+    value[0] = DeviceConst.SetBloodpressure_calibration;
+    value[1] = (low - 10);
+    value[2] = (low + 10);
+    value[3] = (high - 10);
+    value[4] = (high + 10);
+    _crcValue(value);
+    return Uint8List.fromList(value);
+  }
+
+  static Uint8List readBloodPressureCalibration() {
+    final List<int> value = _generateInitValue();
+    value[0] = DeviceConst.GetBloodpressure_calibration;
+    _crcValue(value);
+    return Uint8List.fromList(value);
+  }
 }
