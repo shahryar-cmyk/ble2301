@@ -136,6 +136,8 @@ class BleSDK {
         return ResolveUtil.getUserInfo(value);
       case DeviceConst.CMD_Get_DeviceInfo:
         return ResolveUtil.getDeviceInfo(value);
+      case DeviceConst.ReadBloodpressureCalibration:
+        return ResolveUtil.readOxy(value);
       case DeviceConst.CMD_Enable_Activity:
         return ResolveUtil.getActivityData(value);
       case DeviceConst.CMD_Get_Goal:
@@ -293,6 +295,10 @@ class BleSDK {
         return ResolveUtil.CloseDevices(value);
       case DeviceConst.CMD_AUTO_CHECK_STATUS:
         return ResolveUtil.GetOffCheckStatus(value);
+      case DeviceConst.SetBloodpressureCalibration:
+        return ResolveUtil.setMethodSuccessful(
+            BleConst.SetBloodpressure_calibration);
+        break;
     }
     return ResolveUtil.setMethodError(_getBcdValue(value[0]).toString());
   }
@@ -1074,7 +1080,7 @@ class BleSDK {
 
   static Uint8List setBloodPressureCalibration(int high, int low) {
     final List<int> value = _generateInitValue();
-    value[0] = DeviceConst.SetBloodpressure_calibration;
+    value[0] = DeviceConst.SetBloodpressureCalibration;
     value[1] = (low - 10);
     value[2] = (low + 10);
     value[3] = (high - 10);
@@ -1085,7 +1091,7 @@ class BleSDK {
 
   static Uint8List readBloodPressureCalibration() {
     final List<int> value = _generateInitValue();
-    value[0] = DeviceConst.GetBloodpressure_calibration;
+    value[0] = DeviceConst.ReadBloodpressureCalibration;
     _crcValue(value);
     return Uint8List.fromList(value);
   }

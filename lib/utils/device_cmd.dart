@@ -3,7 +3,7 @@ class DeviceConst {
   static const int CMD_SET_TIME = 0x01;
   static const int CMD_GET_TIME = 0x41;
   static const int CMD_Set_UseInfo = 0x02;
-  static const int CMD_GET_USERINFO =   0x42;
+  static const int CMD_GET_USERINFO = 0x42;
   static const int CMD_Set_DeviceInfo = 0x03;
   static const int CMD_Get_DeviceInfo = 0x04;
   static const int CMD_Set_DeviceID = 0x05;
@@ -36,7 +36,7 @@ class DeviceConst {
   static const int CMD_Get_HrvTestData = 0x56;
   static const int CMD_SET_SOCIAL = 0x64;
   static const int CMD_Start_EXERCISE = 0x19;
-  static const int CMD_HeartPackageFromDevice = 0x18;//
+  static const int CMD_HeartPackageFromDevice = 0x18; //
   static const int CMD_Start_Ota = 0x47;
   static const int CMD_Set_TemperatureCorrection = 0x38;
   static const int CMD_Set_NewDeviceInfo = 0x06;
@@ -46,20 +46,20 @@ class DeviceConst {
   static const int Exit_photo_mode = 0x10;
   static const int Openecg = 0x99;
   static const int Closeecg = 0x98;
-  static const int CMD_ECGQuality =  0x83;
-  static const int CMD_ECGDATA =  0xAA;
-  static const int CMD_PPGGDATA =  0xAB;
-  static const int Weather =  0x15;
-  static const int Braceletdial =  0x24;
-  static const int SportMode =  0x14;
-  static const int GetSportMode =  0x44;
+  static const int CMD_ECGQuality = 0x83;
+  static const int CMD_ECGDATA = 0xAA;
+  static const int CMD_PPGGDATA = 0xAB;
+  static const int Weather = 0x15;
+  static const int Braceletdial = 0x24;
+  static const int SportMode = 0x14;
+  static const int GetSportMode = 0x44;
   static const int MeasurementWithType = 0x28;
   static const int CMD_Get_WorkOutReminder = 0x29;
-  static const int ecgandppg= 0x9E;
+  static const int ecgandppg = 0x9E;
   /* static const int ReadSerialNumber= 0x62;*/
-  static const int LanguageSwitching= 0x29;
-  static const int CMD_heart_package= 0x17;
-  static const int GPSControlCommand= 0x34;
+  static const int LanguageSwitching = 0x29;
+  static const int CMD_heart_package = 0x17;
+  static const int GPSControlCommand = 0x34;
   static const int CMD_Get_GPSDATA = 0x5A;
   static const int Clear_Bracelet_data = 0x61;
   static const int Sos = 0xFE;
@@ -77,4 +77,6 @@ class DeviceConst {
   static const int CMD_AUTO_CHECK_STATUS = 0X8A;
   static const int CMD_GET_BLOODSUGAR = 0X78;
   static const int CMD_GET_BLOODSUGAR_DATA = 0X3A;
+  static const int SetBloodpressureCalibration = 0x87;
+  static const int ReadBloodpressureCalibration = 0x88;
 }

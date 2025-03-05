@@ -268,21 +268,3 @@ class Notifier {
 
   Notifier({required this.type, required this.info});
 }
-
-class MyActivityAlarm {
-  int open; // 0x81 to enable, 0x80 to disable
-  int startHour; // Start hour (0-23)
-  int startMinute; // Start minute (0-59)
-  int endHour; // End hour (0-23)
-  int endMinute; // End minute (0-59)
-  int week; // Days of the week (bitmask: 0x7F for all days)
-
-  MyActivityAlarm({
-    required this.open,
-    required this.startHour,
-    required this.startMinute,
-    required this.endHour,
-    required this.endMinute,
-    required this.week,
-  });
-}

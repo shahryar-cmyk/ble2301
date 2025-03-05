@@ -1,5 +1,3 @@
-
-
 class DeviceKey {
   static const String DataType = "dataType";
   static const String Data = "dicData";
@@ -12,7 +10,6 @@ class DeviceKey {
   static const String DeviceTime = "strDeviceTime"; // 设备时间   GET_DEVICE_Time
   static const String GPSTime = "gpsExpirationTime"; // 设备时间   GET_DEVICE_Time
   static const String TimeZone = "TimeZone"; // 设备时间   GET_DEVICE_Time
-
 
   static const String Band = "Band";
   /*
@@ -31,7 +28,6 @@ class DeviceKey {
   static const String Stride = "MyStride";
   static const String KUserDeviceId = "deviceId";
 
-
   /*
      *  GET_DEVICE_INFO
      *  distanceUnit  距离单位
@@ -46,13 +42,14 @@ class DeviceKey {
   static const String TempUnit = "temperatureUnit";
   static const String WristOn = "wristOn";
   static const String TemperatureUnit = "TemperatureUnit";
-  static const String StatusOfTheRaisedHandOnscreen = "Status_of_the_raised_hand_on_screen";
+  static const String StatusOfTheRaisedHandOnscreen =
+      "Status_of_the_raised_hand_on_screen";
   static const String NightMode = "NightMode";
   static const String LeftOrRight = "handleSign";
   //static const String ScreenShow = "screenState";
   static const String Dialinterface = "dialinterface";
   static const String SocialDistancedwitch = "SocialDistancedwitch";
-  static const String ChineseOrEnglish= "ChineseOrEnglish";
+  static const String ChineseOrEnglish = "ChineseOrEnglish";
   static const String ScreenBrightness = "dcreenBrightness";
   static const String KBaseHeart = "baseHeartRate";
   static const String isHorizontalScreen = "isHorizontalScreen";
@@ -75,16 +72,18 @@ class DeviceKey {
   static const String HeartRate = "heartRate";
   static const String ActiveMinutes = "ExerciseTime";
   static const String TempData = "TempData";
-  static const String StepGoal = "stepGoal";   // 目标步数值  GET_GOAL
-  static const String DistanceGoal = "distanceGoal";   // 目标距离值  GET_GOAL
-  static const String CalorieGoal = "calorieGoal";   // 目标卡路里值  GET_GOAL
-  static const String SleepTimeGoal = "sleepTimeGoal";   // 睡眠目标值  GET_GOAL
+  static const String StepGoal = "stepGoal"; // 目标步数值  GET_GOAL
+  static const String DistanceGoal = "distanceGoal"; // 目标距离值  GET_GOAL
+  static const String CalorieGoal = "calorieGoal"; // 目标卡路里值  GET_GOAL
+  static const String SleepTimeGoal = "sleepTimeGoal"; // 睡眠目标值  GET_GOAL
 
-  static const String BatteryLevel = "batteryLevel";  // 电量级别    READ_DEVICE_BATTERY
+  static const String BatteryLevel =
+      "batteryLevel"; // 电量级别    READ_DEVICE_BATTERY
   static const String MacAddress = "macAddress"; // MAC地址    READ_MAC_ADDRESS
-  static const String DeviceVersion = "deviceVersion";  // 版本号     READ_VERSION
-  static const String DeviceName = "deviceName";  // 设备名称    GET_DEVICE_NAME
-  static const String TemperatureCorrectionValue = "TemperatureCorrectionValue";  // 设备名称    GET_DEVICE_NAME
+  static const String DeviceVersion = "deviceVersion"; // 版本号     READ_VERSION
+  static const String DeviceName = "deviceName"; // 设备名称    GET_DEVICE_NAME
+  static const String TemperatureCorrectionValue =
+      "TemperatureCorrectionValue"; // 设备名称    GET_DEVICE_NAME
 
   /*
      *  GET_AUTOMIC_HEART
@@ -103,7 +102,6 @@ class DeviceKey {
   static const String KHeartEndMinter = "heartEndMinter";
   static const String Weeks = "weekValue";
   static const String IntervalTime = "intervalTime";
-
 
   /*
      *  READ_SPORT_PERIOD
@@ -133,8 +131,6 @@ class DeviceKey {
   static const String Date = "date";
   static const String Goal = "goal";
 
-
-
   /*
      *  GET_STEP_DETAIL
      *Date       日期：年月日时分秒
@@ -159,7 +155,8 @@ class DeviceKey {
 
   static const String KSleepLength = "sleepLength";
   static const String ArraySleep = "arraySleepQuality";
-  static const String sleepUnitLength = "sleepUnitLength";//是不是一分钟的睡眠数据 1为1分钟数据 0为5分钟数据
+  static const String sleepUnitLength =
+      "sleepUnitLength"; //是不是一分钟的睡眠数据 1为1分钟数据 0为5分钟数据
 
   /*
      *  GET_HEART_DATA
@@ -169,7 +166,6 @@ class DeviceKey {
 
   static const String ArrayDynamicHR = "arrayDynamicHR";
   static const String Blood_oxygen = "Blood_oxygen";
-
 
   /*
      * GET_ONCE_HEARTDATA
@@ -217,7 +213,6 @@ class DeviceKey {
   static const String KAlarmLength = "alarmLength";
   static const String KAlarmContent = "dicClock";
 
-
   /***********************GET_HRV_TESTDATA***************************************************/
   /*
      *KBloodTestLength      数据长度
@@ -240,7 +235,6 @@ class DeviceKey {
   static const String KBloodResultRebound = "bloodRebound";
   static const String KBloodResultMax = "bloodResultMax";
   static const String KBloodResultRank = "bloodResultRank";
-
 
   /*
      *KHrvTestProgress  进度
@@ -266,7 +260,6 @@ class DeviceKey {
   static const String KHrvResultTired = "hrvResultTired";
   static const String KHrvResultValue = "hrvResultValue";
 
-
   /*
      *KDisturbState     1:开始运动   0：停止运动
      *KSlipHand         1: 带在手上   0;脱手。
@@ -276,13 +269,11 @@ class DeviceKey {
   static const String KSlipHand = "slipHand";
   static const String KPPGData = "ppgData";
 
-
   /*
      *@param Date       时间：年月日时分秒
      *@param Latitude   纬度数据
      *@param Longitude  经度数据
      */
-
 
   static const String Latitude = "locationLatitude";
   static const String Longitude = "locationLongitude";
@@ -313,14 +304,12 @@ class DeviceKey {
  *@param  Distance     距离
  */
 
-
   static const String ActivityMode = "sportModel";
   static const String Pace = "sportModelSpeed";
 
   static const String KDataID = "KDataID";
   static const String KPhoneDataLength = "KPhoneDataLength";
   static const String KClockLast = "KClockLast";
-
 
   static const String TakePhotoMode = "TakePhotoMode";
   static const String KFunction_tel = "TelMode";
@@ -343,9 +332,8 @@ class DeviceKey {
   static const String PPGValue = "PPGValue";
   static const String EcgStatus = "EcgStatus";
 
-
-  static const String WomenHealthPeriod = "womenHealthPeriod";//经期
-  static const String WomenHealthLength = "womenHealthLength";//周期
+  static const String WomenHealthPeriod = "womenHealthPeriod"; //经期
+  static const String WomenHealthLength = "womenHealthLength"; //周期
 
   //PPI
   static const String TOTAL_ID = "totalID";
@@ -354,15 +342,14 @@ class DeviceKey {
   static const String PPI_NUM = "ppiNum";
 
   //HRV
-  static const String HRV_TIME_MODE="hrvTimeMode";
-  static const String HRV_TIME_Value="hrvTimeValue";
+  static const String HRV_TIME_MODE = "hrvTimeMode";
+  static const String HRV_TIME_Value = "hrvTimeValue";
 
   //脱手检测状态
   static const String GET_OFF_TAG = "getOffTag";
-  static const String GET_OFF_STATE="getOffState";
+  static const String GET_OFF_STATE = "getOffState";
 
   static const String RESULT = "result";
-
-
-
+  static const String KHrvBloodHighPressure = "KHrvBloodHighPressure";
+  static const String KHrvBloodLowPressure = "KHrvBloodLowPressure";
 }
