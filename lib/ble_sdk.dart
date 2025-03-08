@@ -1045,7 +1045,43 @@ class BleSDK {
     return weekByte;
   }
 
+// From Previous Data
   static Uint8List setClockData(List<Clock> clockList) {
+    int size = clockList.length;
+    int length = 39;
+    List<int> totalValue = List.filled(length * size + 2, 0);
+
+    for (int i = 0; i < clockList.length; i++) {
+      Clock clock = clockList[i];
+      List<int> value = List.filled(length, 0);
+      List<int> infoValue = _getInfoValue(clock.content, 30);
+
+      value[0] = DeviceConst.CMD_Set_Clock; // Command ID
+      value[1] = size; // Total alarms count
+      value[2] = clock.number ?? 0; // Alarm ID
+      value[3] = clock.enable ? 1 : 0; // Enable/disable flag
+      value[4] = clock.type; // Alarm Type
+      value[5] = _getBcdValue(clock.hour); // Hour (BCD format)
+      value[6] = _getBcdValue(clock.minute); // Minute (BCD format)
+      value[7] = _convertWeeksToByte(clock.weeks); // Convert weeks to a byte
+      value[8] = infoValue.isEmpty ? 1 : infoValue.length; // Length of info
+
+      value.setRange(9, 9 + infoValue.length, infoValue); // Copy info data
+
+      // Copy this alarm data into the totalValue buffer
+      totalValue.setRange(i * length, i * length + length, value);
+    }
+
+    totalValue[totalValue.length - 2] =
+        DeviceConst.CMD_Set_Clock; // Closing command
+    totalValue[totalValue.length - 1] = 0xff; // End byte
+
+    return Uint8List.fromList(totalValue);
+  }
+
+  // For Personal Code
+  static Uint8List setClockData2(List<Clock> clockList) {
+    final List<int> value = _generateInitValue();
     int size = clockList.length;
     int length = 39;
     List<int> totalValue = List.filled(length * size + 2, 0);
